@@ -1,0 +1,22 @@
+div#user {
+    float: right;
+    color:white;
+}
+.foo ul {
+    float:left;
+    width:100%; /* A menü az alatta levő szövegtől elválik, birtokolja a teljes vízszintes sávját. */
+    padding:0;
+    margin:0;
+    list-style-type:none;
+}        
+.foo a {
+    float:left;
+    width:8em; /* Fix szélességű gombok érhetők el. Érdemes azonban vigyázni ezzel a módszerrel, mert ha a szöveg nem fér ki, a dizájn szétesik. */
+    text-decoration:bold; /* Ne legyen aláhúzva a link. */
+    color:white;
+    padding:0.2em 0.6em;
+    border-right:1px solid white;
+}
+
+.foo a:hover { border-bottom: 3px solid #f33f3f;} /* Az egérkurzorra színváltással reagál a menüpont. */
+li { display:inline } /* Ez a sor oldja meg, hogy a menüpontok egymás mellé kerüljenek. */
