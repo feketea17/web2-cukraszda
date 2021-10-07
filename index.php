@@ -1,12 +1,12 @@
 <?php
 
-//alkalmazás gyökér könyvtára a szerveren
-define('SERVER_ROOT', $_SERVER['DOCUMENT_ROOT'].'/web2/');
+//alkalmazï¿½s gyï¿½kï¿½r kï¿½nyvtï¿½ra a szerveren
+define('SERVER_ROOT', $_SERVER['DOCUMENT_ROOT'].'/web2-cukraszda/');
 
-//URL cím az alkalmazás gyökeréhez
-define('SITE_ROOT', 'http://localhost/web2/');
+//URL cï¿½m az alkalmazï¿½s gyï¿½kerï¿½hez
+define('SITE_ROOT', 'http://localhost/web2-cukraszda/');
 
-// a router.php vezérlõ betöltése
+// a router.php vezï¿½rlï¿½ betï¿½ltï¿½se
 require_once(SERVER_ROOT . 'controllers/' . 'router.php');
 
 ?>
