@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 5.0.3
+-- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2018. Már 05. 23:47
--- Kiszolgáló verziója: 10.1.19-MariaDB
--- PHP verzió: 7.0.13
+-- Létrehozás ideje: 2021. Okt 07. 18:37
+-- Kiszolgáló verziója: 10.4.14-MariaDB
+-- PHP verzió: 7.2.34
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -19,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Adatbázis: `web2`
 --
-CREATE DATABASE IF NOT EXISTS `web2` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `web2`;
 
 -- --------------------------------------------------------
 
@@ -28,15 +27,14 @@ USE `web2`;
 -- Tábla szerkezet ehhez a táblához `felhasznalok`
 --
 
-CREATE TABLE IF NOT EXISTS `felhasznalok` (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `felhasznalok` (
+  `id` int(10) UNSIGNED NOT NULL,
   `csaladi_nev` varchar(45) NOT NULL DEFAULT '',
   `utonev` varchar(45) NOT NULL DEFAULT '',
   `bejelentkezes` varchar(12) NOT NULL DEFAULT '',
   `jelszo` varchar(40) NOT NULL DEFAULT '',
-  `jogosultsag` varchar(3) NOT NULL DEFAULT '_1_',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+  `jogosultsag` varchar(3) NOT NULL DEFAULT '_1_'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- A tábla adatainak kiíratása `felhasznalok`
@@ -52,7 +50,9 @@ INSERT INTO `felhasznalok` (`id`, `csaladi_nev`, `utonev`, `bejelentkezes`, `jel
 (7, 'Családi_7', 'Utónév_7', 'Login7', '41ad7e5406d8f1af2deef2ade4753009976328f8', '_1_'),
 (8, 'Családi_8', 'Utónév_8', 'Login8', '3a340fe3599746234ef89591e372d4dd8b590053', '_1_'),
 (9, 'Családi_9', 'Utónév_9', 'Login9', 'c0298f7d314ecbc5651da5679a0a240833a88238', '_1_'),
-(10, 'Családi_10', 'Utónév_10', 'Login10', 'a477427c183664b57f977661ac3167b64823f366', '_1_');
+(10, 'Családi_10', 'Utónév_10', 'Login10', 'a477427c183664b57f977661ac3167b64823f366', '_1_'),
+(19, 'proba', 'proba', 'proba', '9f47b814230f7481deb45506283214aa58e923f9', '_1_'),
+(18, 'Kalocsai', 'Friderika', 'kfriderika', '342a99bbf4207993428b3bef6c4ba7f83fdce7da', '_1_');
 
 -- --------------------------------------------------------
 
@@ -60,13 +60,12 @@ INSERT INTO `felhasznalok` (`id`, `csaladi_nev`, `utonev`, `bejelentkezes`, `jel
 -- Tábla szerkezet ehhez a táblához `menu`
 --
 
-CREATE TABLE IF NOT EXISTS `menu` (
+CREATE TABLE `menu` (
   `url` varchar(30) NOT NULL,
   `nev` varchar(30) NOT NULL,
   `szulo` varchar(30) NOT NULL,
   `jogosultsag` varchar(3) NOT NULL,
-  `sorrend` tinyint(4) NOT NULL,
-  PRIMARY KEY (`url`)
+  `sorrend` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -81,7 +80,73 @@ INSERT INTO `menu` (`url`, `nev`, `szulo`, `jogosultsag`, `sorrend`) VALUES
 ('kiegeszitesek', 'Kiegészítések', 'elerhetoseg', '011', 50),
 ('kilepes', 'Kilépés', '', '011', 70),
 ('linkek', 'Linkek', '', '100', 30),
-('nyitolap', 'Nyitólap', '', '111', 10);
+('nyitolap', 'Nyitólap', '', '111', 10),
+('regisztracio', 'Regisztráció', '', '100', 90),
+('velemenyek', 'Vélemények', '', '011', 89);
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `velemenyek`
+--
+
+CREATE TABLE `velemenyek` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `tema` text NOT NULL,
+  `velemeny` varchar(1000) NOT NULL,
+  `userlastname` varchar(40) NOT NULL,
+  `userfirstname` varchar(40) NOT NULL,
+  `datum` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- A tábla adatainak kiíratása `velemenyek`
+--
+
+INSERT INTO `velemenyek` (`id`, `tema`, `velemeny`, `userlastname`, `userfirstname`, `datum`) VALUES
+(3, 'ezegyvelemeny', 'ez meg a velemeny szoveges kifejtese', 'proba', 'proba', '0000-00-00 00:00:00'),
+(4, 'ezegyvelemeny', 'ez meg a velemeny szoveges kifejtese', 'proba', 'proba', '0000-00-00 00:00:00'),
+(5, 'ezegyvelemeny', 'ez meg a velemeny szoveges kifejtese', 'proba', 'proba', '0000-00-00 00:00:00'),
+(6, 'ezegyvelemeny', 'ez meg a velemeny szoveges kifejtese', 'proba', 'proba', '0000-00-00 00:00:00');
+
+--
+-- Indexek a kiírt táblákhoz
+--
+
+--
+-- A tábla indexei `felhasznalok`
+--
+ALTER TABLE `felhasznalok`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- A tábla indexei `menu`
+--
+ALTER TABLE `menu`
+  ADD PRIMARY KEY (`url`);
+
+--
+-- A tábla indexei `velemenyek`
+--
+ALTER TABLE `velemenyek`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- A kiírt táblák AUTO_INCREMENT értéke
+--
+
+--
+-- AUTO_INCREMENT a táblához `felhasznalok`
+--
+ALTER TABLE `felhasznalok`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT a táblához `velemenyek`
+--
+ALTER TABLE `velemenyek`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
