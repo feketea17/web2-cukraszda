@@ -17,7 +17,7 @@
           </div>
           <div class="col-md-8">
             <div class="contact-form">
-              <form action="<?= SITE_ROOT ?>velemenyez" method="post">
+              <form action="velemenyez" method="post">
                 <div class="row">
                   <div class="col-lg-12 col-md-12 col-sm-12">
                     <fieldset>
@@ -33,15 +33,41 @@
                   </div>
 				  <div class="col-lg-12">
                     <fieldset>
-                      <h2><br><?= (isset($viewData['uzenet']) ? $viewData['uzenet'] : "") ?><br></h2>
+                      <h2><br><?= (isset($viewData['uzenet']) ? $viewData['uzenet'] : "") ?><br><br \></h2>
                     </fieldset>
                   </div>
 
                     <h2>Korábbi vélemények megtekintése</h2>
 
-                    
+               
+<?php
+$servername = "localhost";
+$username = "cukraszda123";
+$password = "Melegszendvics";
+$dbname = "cukraszda123";
 
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
 
+$sql = "SELECT * FROM velemenyek order by id DESC";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+        echo "<br> Id: ". $row["id"] . "&emsp; Téma: " . $row["tema"] . "<br> Vélemeny: " . $row["velemeny"] . "<br> Név: " . $row["userlastname"] . " " . $row["userfirstname"] . "&emsp; &emsp; &emsp; Dátum: " . $row["datum"] . "<br>";
+    }
+} else {
+    echo "0 results";
+}
+
+$conn->close();
+?>
+                  
                 </div>
               </form>
             </div>
