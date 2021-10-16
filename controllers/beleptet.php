@@ -2,17 +2,17 @@
 
 class Beleptet_Controller
 {
-	public $baseName = 'beleptet';  //meghatározni, hogy melyik oldalon vagyunk
-	public function main(array $vars) // a router által továbbított paramétereket kapja
+	public $baseName = 'belepes';  //meghatï¿½rozni, hogy melyik oldalon vagyunk
+	public function main(array $vars) // a router ï¿½ltal tovï¿½bbï¿½tott paramï¿½tereket kapja
 	{
-		$beleptetModel = new Beleptet_Model;  //az osztályhoz tartozó modell
-		//a modellben belépteti a felhasználót
+		$beleptetModel = new Beleptet_Model;  //az osztï¿½lyhoz tartozï¿½ modell
+		//a modellben belï¿½pteti a felhasznï¿½lï¿½t
 		$retData = $beleptetModel->get_data($vars);
 		if($retData['eredmeny'] == "ERROR")
 			$this->baseName = "belepes";
-		//betöltjük a nézetet
+		//betï¿½ltjï¿½k a nï¿½zetet
 		$view = new View_Loader($this->baseName.'_main');
-		//átadjuk a lekérdezett adatokat a nézetnek
+		//ï¿½tadjuk a lekï¿½rdezett adatokat a nï¿½zetnek
 		foreach($retData as $name => $value)
 			$view->assign($name, $value);
 	}

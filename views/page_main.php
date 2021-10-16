@@ -7,13 +7,13 @@
         <title>Valami Cukrászda</title>
 		
 		<!-- CSS: Bootstrap -->
-    <link rel="stylesheet" type="text/css" href="<?php echo SITE_ROOT?>style/bootstrap/css/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="<?php echo SITE_ROOT?>style/main_style.css">
+    <link rel="stylesheet" type="text/css" href="style/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="style/main_style.css">
 		
 		<!-- CSS: egyéb -->
-		<link rel="stylesheet" type="text/css" href="<?php echo SITE_ROOT?>assets/css/fontawesome.css">
-		<link rel="stylesheet" type="text/css" href="<?php echo SITE_ROOT?>assets/css/style.css">
-		<link rel="stylesheet" type="text/css" href="<?php echo SITE_ROOT?>assets/css/owl.css">
+		<link rel="stylesheet" type="text/css" href="assets/css/fontawesome.css">
+		<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+		<link rel="stylesheet" type="text/css" href="assets/css/owl.css">
 		
         <?php if($viewData['style']) echo '<link rel="stylesheet" type="text/css" href="'.$viewData['style'].'">'; ?>
     </head>

@@ -19,9 +19,9 @@ Class Menu {
         foreach(self::$menu as $menuindex => $menuitem)       
         {
             if($menuitem[1] == "")
-            { $menu.= "<li><a href='".SITE_ROOT.$menuindex."' ".($menuindex==$sItems[0]? "class='selected'":"").">".$menuitem[0]."</a></li>"; }
+            { $menu.= "<li><a href='".$menuindex."' ".($menuindex==$sItems[0]? "class='selected'":"").">".$menuitem[0]."</a></li>"; }
             else if($menuitem[1] == $sItems[0])
-            { $submenu .= "<li><a href='".SITE_ROOT.$sItems[0]."/".$menuindex."' ".($menuindex==$sItems[1]? "class='selected'":"").">".$menuitem[0]."</a></li>"; }
+            { $submenu .= "<li><a href='".$sItems[0]."/".$menuindex."' ".($menuindex==$sItems[1]? "class='selected'":"").">".$menuitem[0]."</a></li>"; }
         }
         $menu.="</ul>";
         
