@@ -6,8 +6,8 @@ if(! isset($_SESSION['userfirstname'])) $_SESSION['userfirstname'] = "";
 if(! isset($_SESSION['userlastname'])) $_SESSION['userlastname'] = "";
 if(! isset($_SESSION['userlevel'])) $_SESSION['userlevel'] = "1__";
 
-include(SERVER_ROOT . 'includes/database.inc.php');
-include(SERVER_ROOT . 'includes/menu.inc.php');
+include( 'includes/database.inc.php');
+include( 'includes/menu.inc.php');
 
 // Felbontjuk a param�tereket. Az & elv�laszt� jellel v�gzett felbont�s
 // megfelel� lesz, els� eleme a megtekinteni k�v�nt oldal neve.
@@ -46,11 +46,11 @@ if($request != "")
 // el�bbiekben lek�rdezett param�tereket tov�bbadva. 
 
 $controllerfile = $page.($subpage != "" ? "_".$subpage : "");
-$target = SERVER_ROOT.'controllers/'.$controllerfile.'.php';
+$target = 'controllers/'.$controllerfile.'.php';
 if(! file_exists($target))
 {
 	$controllerfile = "error404";
-	$target = SERVER_ROOT.'controllers/error404.php';
+	$target ='controllers/error404.php';
 }
 
 include_once($target);
@@ -69,7 +69,7 @@ $controller->main($vars);
 
 function __autoload($className)
 {
-	$file = SERVER_ROOT.'models/'.strtolower($className).'.php';
+	$file ='models/'.strtolower($className).'.php';
 	if(file_exists($file))
 	{ include_once($file); }
 	else
