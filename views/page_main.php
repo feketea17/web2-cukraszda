@@ -43,10 +43,11 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
-				<div class="foo">
-				<?php echo Menu::getMenu($viewData['selectedItems']); ?></div>
+            <li class="nav-item">
+              <div class="foo">	<?php echo Menu::getMenu($viewData['selectedItems']); ?> </div>
+		
             </ul>
-          </div>
+        </li>
         </div>
       </nav>
     </header>

@@ -15,7 +15,7 @@ Class Menu {
     public static function getMenu($sItems) {
         $submenu = "";
         
-        $menu = "<ul>";
+        $menu = "<ul class=''>";
         foreach(self::$menu as $menuindex => $menuitem)       
         {
             if($menuitem[1] == "")
