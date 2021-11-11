@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap-enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap-env="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://localhost/feladat/szerver/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://localhost/feladat/szerver/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://localhost/feladat/szerver/">
+      <xsd:complexType name="Markak">
+        <xsd:all>
+          <xsd:element name="hibakod" type="xsd:int" minOccurs="0" maxOccurs="1"/>
+          <xsd:element name="uzenet" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+          <xsd:element name="suti" type="tns:MarkaArray" minOccurs="0" maxOccurs="1"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="Marka">
+        <xsd:all>
+          <xsd:element name="nev" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+          <xsd:element name="tipus" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="Modellek">
+        <xsd:all>
+          <xsd:element name="hibakod" type="xsd:int" minOccurs="0" maxOccurs="1"/>
+          <xsd:element name="uzenet" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+          <xsd:element name="nev" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+          <xsd:element name="tipus" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+          <xsd:element name="ar" type="tns:ModellArray" minOccurs="0" maxOccurs="1"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="Modell">
+        <xsd:all>
+          <xsd:element name="ertek" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+          <xsd:element name="egyseg" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+        </xsd:all>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="getmarkakRequest"/>
+  <wsdl:message name="getmarkakResponse">
+    <wsdl:part name="getmarkakReturn" type="tns:Markak"/>
+  </wsdl:message>
+  <wsdl:message name="getmodellekRequest">
+    <wsdl:part name="nev" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:message name="getmodellekResponse">
+    <wsdl:part name="getmodellekReturn" type="tns:Modellek"/>
+  </wsdl:message>
+  <wsdl:portType name="MobilokPortType">
+    <wsdl:operation name="getmarkak">
+      <wsdl:documentation/>
+      <wsdl:input message="tns:getmarkakRequest"/>
+      <wsdl:output message="tns:getmarkakResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="getmodellek">
+      <wsdl:documentation/>
+      <wsdl:input message="tns:getmodellekRequest"/>
+      <wsdl:output message="tns:getmodellekResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="MobilokBinding" type="tns:MobilokPortType">
+    <soap-env:binding xmlns="http://schemas.xmlsoap.org/wsdl/soap/" style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getmarkak">
+      <soap-env:operation xmlns="http://schemas.xmlsoap.org/wsdl/soap/" soapAction="http://localhost/feladat/szerver/szerver.php?method=getmarkak" style="rpc"/>
+      <wsdl:input>
+        <soap-env:body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap-env:body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getmodellek">
+      <soap-env:operation xmlns="http://schemas.xmlsoap.org/wsdl/soap/" soapAction="http://localhost/feladat/szerver/szerver.php?method=getmodellek" style="rpc"/>
+      <wsdl:input>
+        <soap-env:body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap-env:body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Mobilok">
+    <wsdl:documentation/>
+    <wsdl:port name="MobilokPort" binding="tns:MobilokBinding">
+      <soap-env:address location="http://localhost/feladat/szerver/szerver.php"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

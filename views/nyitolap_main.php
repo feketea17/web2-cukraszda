@@ -86,23 +86,3 @@
         </div>
       </div>
     </div>
-
-    <div class="call-to-action">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="inner-content">
-              <div class="row">
-                <div class="col-md-8">
-                  <h4>Szeretne még többet megtudni rólunk?</h4>
-                  <p>Rendelést adna le, vagy csak egyszerűen kérdése van? Vegye fel velünk bátran a kapcsolatot!</p>
-                </div>
-                <div class="col-lg-4 col-md-6 text-right">
-                  <a href="contact.html" class="filled-button">Kapcsolat</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
